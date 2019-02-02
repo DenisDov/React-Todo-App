@@ -25,9 +25,12 @@ class App extends Component {
   };
 
   handleRemoveTodo = (id) => {
-    this.setState(prevState => ({
-      todos: [...prevState.todos.filter(todo => todo.id !== id)],
-    }));
+    const confirmRemoveTodo = window.confirm('Delete todo ?');
+    if (confirmRemoveTodo) {
+      this.setState(prevState => ({
+        todos: [...prevState.todos.filter(todo => todo.id !== id)],
+      }));
+    }
   };
 
   handleAddTodo = (todo) => {
@@ -41,6 +44,20 @@ class App extends Component {
     }));
   };
 
+  handleEditTodo = (id) => {
+    const editedTodo = window.prompt('Edit this todo', '').trim();
+    if (editedTodo) {
+      this.setState(prevState => ({
+        todos: prevState.todos.map((todo) => {
+          if (todo.id === id) {
+            todo.title = editedTodo;
+          }
+          return todo;
+        }),
+      }));
+    }
+  };
+
   render() {
     return (
       <div className="App">
@@ -52,6 +69,7 @@ class App extends Component {
             todos={this.state.todos}
             handleCompleteTodo={this.handleCompleteTodo}
             handleRemoveTodo={this.handleRemoveTodo}
+            handleEditTodo={this.handleEditTodo}
           />
         </main>
         <Footer />

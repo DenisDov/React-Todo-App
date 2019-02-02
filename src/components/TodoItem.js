@@ -5,6 +5,7 @@ const TodoItem = ({
   todo: { id, title, completed },
   handleCompleteTodo,
   handleRemoveTodo,
+  handleEditTodo,
 }) => (
   <StyledTodoItem completed={completed}>
     <input
@@ -16,6 +17,9 @@ const TodoItem = ({
     <StyledTodoLabel htmlFor={id} completed={completed}>
       {title}
     </StyledTodoLabel>
+    <StyledEdit type="button" onClick={() => handleEditTodo(id)}>
+      ✎
+    </StyledEdit>
     <StyledCross onClick={() => handleRemoveTodo(id)}>✕</StyledCross>
   </StyledTodoItem>
 );
@@ -30,7 +34,8 @@ const StyledTodoItem = styled.div`
   transition: background-color 200ms;
   border-bottom: 1px solid #ddd;
   &:hover {
-    span {
+    span,
+    button {
       opacity: 1;
     }
   }
@@ -44,6 +49,21 @@ const StyledTodoLabel = styled.label`
   user-select: none;
   cursor: pointer;
   text-decoration: ${props => props.completed && 'line-through'};
+`;
+const StyledEdit = styled.button`
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 8px 3px;
+  opacity: 0;
+  margin-right: 5px;
+  &:hover {
+    background: #f9f9f9;
+  }
+  &:focus {
+    outline: none;
+  }
 `;
 const StyledCross = styled.span`
   cursor: pointer;

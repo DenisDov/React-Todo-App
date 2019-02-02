@@ -5,7 +5,12 @@ import TodoItem from './TodoItem';
 
 class Todos extends Component {
   render() {
-    const { todos, handleCompleteTodo, handleRemoveTodo } = this.props;
+    const {
+      todos,
+      handleCompleteTodo,
+      handleRemoveTodo,
+      handleEditTodo,
+    } = this.props;
     return (
       <div className="container">
         <TodosHolder>
@@ -16,6 +21,7 @@ class Todos extends Component {
                 todo={item}
                 handleCompleteTodo={handleCompleteTodo}
                 handleRemoveTodo={handleRemoveTodo}
+                handleEditTodo={handleEditTodo}
               />
             ))
           ) : (

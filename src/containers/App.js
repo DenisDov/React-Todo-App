@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
+import SimpleStorage from 'react-simple-storage';
 
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
@@ -43,6 +44,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <SimpleStorage parent={this} />
         <Header />
         <main>
           <AddTodoForm handleAddTodo={this.handleAddTodo} />

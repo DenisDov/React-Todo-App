@@ -25,7 +25,6 @@ class AddTodoForm extends Component {
   };
 
   render() {
-    console.log('s', this.state);
     return (
       <div className="container">
         <h1>TODO</h1>
@@ -38,7 +37,7 @@ class AddTodoForm extends Component {
             onChange={this.handleChange}
           />
           <button type="submit" disabled={this.state.todo === ''}>
-            Add Todo
+            + Add Todo
           </button>
         </StyledForm>
       </div>

@@ -27,7 +27,7 @@ class AddTodoForm extends Component {
   render() {
     return (
       <div className="container">
-        <h1>TODO</h1>
+        <h1>TODO List</h1>
         <StyledForm onSubmit={this.onSubmit}>
           <input
             type="text"

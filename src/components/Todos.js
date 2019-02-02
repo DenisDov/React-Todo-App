@@ -6,7 +6,6 @@ import TodoItem from './TodoItem';
 class Todos extends Component {
   render() {
     const { todos, handleCompleteTodo, handleRemoveTodo } = this.props;
-    console.log('todos: ', todos);
     return (
       <div className="container">
         <TodosHolder>

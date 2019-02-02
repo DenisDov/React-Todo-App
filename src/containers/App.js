@@ -14,20 +14,20 @@ class App extends Component {
   };
 
   handleCompleteTodo = (id) => {
-    this.setState({
-      todos: this.state.todos.map((todo) => {
+    this.setState(prevState => ({
+      todos: prevState.todos.map((todo) => {
         if (todo.id === id) {
           todo.completed = !todo.completed;
         }
         return todo;
       }),
-    });
+    }));
   };
 
   handleRemoveTodo = (id) => {
-    this.setState({
-      todos: [...this.state.todos.filter(todo => todo.id !== id)],
-    });
+    this.setState(prevState => ({
+      todos: [...prevState.todos.filter(todo => todo.id !== id)],
+    }));
   };
 
   handleAddTodo = (todo) => {
@@ -36,9 +36,9 @@ class App extends Component {
       title: todo,
       completed: false,
     };
-    this.setState({
-      todos: [...this.state.todos, newTodo],
-    });
+    this.setState(prevState => ({
+      todos: [...prevState.todos, newTodo],
+    }));
   };
 
   render() {

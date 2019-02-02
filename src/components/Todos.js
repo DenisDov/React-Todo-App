@@ -5,17 +5,25 @@ import TodoItem from './TodoItem';
 
 class Todos extends Component {
   render() {
+    const { todos, handleCompleteTodo, handleRemoveTodo } = this.props;
+    console.log('todos: ', todos);
     return (
       <div className="container">
         <TodosHolder>
-          {this.props.todos.map(item => (
-            <TodoItem
-              key={item.id}
-              todo={item}
-              handleCompleteTodo={this.props.handleCompleteTodo}
-              handleRemoveTodo={this.props.handleRemoveTodo}
-            />
-          ))}
+          {todos.length ? (
+            todos.map(item => (
+              <TodoItem
+                key={item.id}
+                todo={item}
+                handleCompleteTodo={handleCompleteTodo}
+                handleRemoveTodo={handleRemoveTodo}
+              />
+            ))
+          ) : (
+            <StyledEmptyComponent>
+              Add your first todo above
+            </StyledEmptyComponent>
+          )}
         </TodosHolder>
       </div>
     );
@@ -26,4 +34,7 @@ export default Todos;
 
 const TodosHolder = styled.div`
   margin-bottom: 30px;
+`;
+const StyledEmptyComponent = styled.div`
+  text-align: center;
 `;

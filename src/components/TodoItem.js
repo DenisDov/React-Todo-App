@@ -1,27 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-class TodoItem extends Component {
-  render() {
-    const { id, title, completed } = this.props.todo;
-    return (
-      <StyledTodoItem completed={completed}>
-        <input
-          type="checkbox"
-          id={id}
-          onChange={() => this.props.handleCompleteTodo(id)}
-          checked={completed}
-        />
-        <StyledTodoLabel htmlFor={id} completed={completed}>
-          {title}
-        </StyledTodoLabel>
-        <StyledCross onClick={() => this.props.handleRemoveTodo(id)}>
-          ✕
-        </StyledCross>
-      </StyledTodoItem>
-    );
-  }
-}
+const TodoItem = ({
+  todo: { id, title, completed },
+  handleCompleteTodo,
+  handleRemoveTodo,
+}) => (
+  <StyledTodoItem completed={completed}>
+    <input
+      type="checkbox"
+      id={id}
+      onChange={() => handleCompleteTodo(id)}
+      checked={completed}
+    />
+    <StyledTodoLabel htmlFor={id} completed={completed}>
+      {title}
+    </StyledTodoLabel>
+    <StyledCross onClick={() => handleRemoveTodo(id)}>✕</StyledCross>
+  </StyledTodoItem>
+);
 
 export default TodoItem;
 

@@ -53,6 +53,6 @@ const StyledCross = styled.span`
   padding: 8px 3px;
   opacity: 0;
   &:hover {
-    background: white;
+    background: #f9f9f9;
   }
 `;

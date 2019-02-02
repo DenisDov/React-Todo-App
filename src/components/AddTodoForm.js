@@ -62,6 +62,7 @@ const StyledForm = styled.form`
     }
   }
   button {
+    cursor: pointer;
     font-size: 16px;
     -webkit-appearance: button;
     border-radius: 0 2px 2px 0;
@@ -69,9 +70,13 @@ const StyledForm = styled.form`
     padding: 1em 0.75em;
     background-color: #007bff;
     color: white;
+    transition: background-color 200ms;
     &[disabled] {
       cursor: not-allowed;
       opacity: 0.8;
+    }
+    &:hover:not(:disabled) {
+      background-color: #025ebf;
     }
   }
 `;

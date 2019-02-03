@@ -65,9 +65,12 @@ const StyledEdit = styled.button`
     outline: none;
   }
 `;
-const StyledCross = styled.span`
+const StyledCross = styled.button`
   cursor: pointer;
   padding: 8px 3px;
+  appearance: none;
+  border: none;
+  background: none;
   opacity: 0;
   &:hover {
     background: #f9f9f9;

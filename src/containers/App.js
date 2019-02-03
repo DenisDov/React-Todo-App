@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
 import SimpleStorage from 'react-simple-storage';
+import { arrayMove } from 'react-sortable-hoc';
 
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
@@ -45,7 +46,7 @@ class App extends Component {
   };
 
   handleEditTodo = (id) => {
-    const editedTodo = window.prompt('Edit this todo', '').trim();
+    const editedTodo = window.prompt('Edit this todo', '');
     if (editedTodo) {
       this.setState(prevState => ({
         todos: prevState.todos.map((todo) => {
@@ -58,19 +59,28 @@ class App extends Component {
     }
   };
 
+  onSortEnd = ({ oldIndex, newIndex }) => {
+    this.setState(({ todos }) => ({
+      todos: arrayMove(todos, oldIndex, newIndex),
+    }));
+  };
+
   render() {
     return (
       <div className="App">
         <SimpleStorage parent={this} />
         <Header />
         <main>
-          <AddTodoForm handleAddTodo={this.handleAddTodo} />
-          <Todos
-            todos={this.state.todos}
-            handleCompleteTodo={this.handleCompleteTodo}
-            handleRemoveTodo={this.handleRemoveTodo}
-            handleEditTodo={this.handleEditTodo}
-          />
+          <div className="container">
+            <AddTodoForm handleAddTodo={this.handleAddTodo} />
+            <Todos
+              todos={this.state.todos}
+              handleCompleteTodo={this.handleCompleteTodo}
+              handleRemoveTodo={this.handleRemoveTodo}
+              handleEditTodo={this.handleEditTodo}
+              onSortEnd={this.onSortEnd}
+            />
+          </div>
         </main>
         <Footer />
       </div>

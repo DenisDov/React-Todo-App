@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { sortableContainer, sortableElement } from 'react-sortable-hoc';
 
 import TodoItem from './TodoItem';
+
+const SortableContainer = sortableContainer(({ children }) => (
+  <TodosHolder>{children}</TodosHolder>
+));
+const SortableItem = sortableElement(({ ...props }) => <TodoItem {...props} />);
 
 class Todos extends Component {
   render() {
@@ -10,27 +16,28 @@ class Todos extends Component {
       handleCompleteTodo,
       handleRemoveTodo,
       handleEditTodo,
+      onSortEnd,
     } = this.props;
     return (
-      <div className="container">
-        <TodosHolder>
-          {todos.length ? (
-            todos.map(item => (
-              <TodoItem
-                key={item.id}
-                todo={item}
-                handleCompleteTodo={handleCompleteTodo}
-                handleRemoveTodo={handleRemoveTodo}
-                handleEditTodo={handleEditTodo}
-              />
-            ))
-          ) : (
-            <StyledEmptyComponent>
-              Add your first todo above
-            </StyledEmptyComponent>
-          )}
-        </TodosHolder>
-      </div>
+      <SortableContainer pressDelay={200} onSortEnd={onSortEnd}>
+        {todos.length > 0 ? (
+          todos.map((item, index) => (
+            <SortableItem
+              key={item.id}
+              index={index}
+              todo={item}
+              handleCompleteTodo={handleCompleteTodo}
+              handleRemoveTodo={handleRemoveTodo}
+              handleEditTodo={handleEditTodo}
+            />
+          ))
+        ) : (
+          <StyledEmptyComponent>Add your first todo above</StyledEmptyComponent>
+        )}
+        {todos.length > 0 && (
+          <StyledTip>Hold and sort todo if you need</StyledTip>
+        )}
+      </SortableContainer>
     );
   }
 }
@@ -42,4 +49,7 @@ const TodosHolder = styled.div`
 `;
 const StyledEmptyComponent = styled.div`
   text-align: center;
+`;
+const StyledTip = styled.p`
+  color: #6c757d;
 `;

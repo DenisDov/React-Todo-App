@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 
 class AddTodoForm extends Component {
@@ -26,7 +26,7 @@ class AddTodoForm extends Component {
 
   render() {
     return (
-      <div className="container">
+      <Fragment>
         <h1>TODO List</h1>
         <StyledForm onSubmit={this.onSubmit}>
           <input
@@ -40,7 +40,7 @@ class AddTodoForm extends Component {
             + Add Todo
           </button>
         </StyledForm>
-      </div>
+      </Fragment>
     );
   }
 }
